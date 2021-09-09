@@ -37,14 +37,15 @@
                                              selector:@selector(audioSessionRouteChangeNotification:)
                                                  name:AVAudioSessionRouteChangeNotification
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillResignActiveNotification)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidBecomeActiveNotification)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
+    // 屏蔽掉后台监听
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(applicationWillResignActiveNotification)
+//                                                 name:UIApplicationWillResignActiveNotification
+//                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(applicationDidBecomeActiveNotification)
+//                                                 name:UIApplicationDidBecomeActiveNotification
+//                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(volumeDidChangeNotification:)
                                                  name:@"AVSystemController_SystemVolumeDidChangeNotification"
@@ -58,8 +59,8 @@
 
 - (void)removeNotification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
 }
