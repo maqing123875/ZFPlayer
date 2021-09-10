@@ -86,12 +86,13 @@
     self.coverImageView.frame = self.playerView.frame;
 }
 
-- (CGSize)presentationSize {
-    if (CGSizeEqualToSize(_presentationSize, CGSizeZero)) {
-        _presentationSize = self.frame.size;
-    }
-    return _presentationSize;
-}
+//解决视频播放器闪动的问题
+//- (CGSize)presentationSize {
+//    if (CGSizeEqualToSize(_presentationSize, CGSizeZero)) {
+//        _presentationSize = self.frame.size;
+//    }
+//    return _presentationSize;
+//}
 
 - (UIImageView *)coverImageView {
     if (!_coverImageView) {

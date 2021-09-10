@@ -429,12 +429,13 @@
 
 /// 加载状态改变
 - (void)videoPlayer:(ZFPlayerController *)videoPlayer loadStateChanged:(ZFPlayerLoadState)state {
-    if (state == ZFPlayerLoadStatePrepare) {
-        self.coverImageView.hidden = NO;
-    } else if (state == ZFPlayerLoadStatePlaythroughOK || state == ZFPlayerLoadStatePlayable) {
-        self.coverImageView.hidden = YES;
-        self.player.currentPlayerManager.view.backgroundColor = [UIColor blackColor];
-    }
+    //解决视频播放前闪动的问题
+//    if (state == ZFPlayerLoadStatePrepare) {
+//        self.coverImageView.hidden = NO;
+//    } else if (state == ZFPlayerLoadStatePlaythroughOK || state == ZFPlayerLoadStatePlayable) {
+//        self.coverImageView.hidden = YES;
+//        self.player.currentPlayerManager.view.backgroundColor = [UIColor blackColor];
+//    }
     if (state == ZFPlayerLoadStateStalled && videoPlayer.currentPlayerManager.isPlaying) {
         [self.activity startAnimating];
     } else if ((state == ZFPlayerLoadStateStalled || state == ZFPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.isPlaying) {
