@@ -311,7 +311,7 @@ static NSString *const kPresentationSize         = @"presentationSize";
     [self pause];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 如果此时用户已经暂停了，则不再需要开启播放了
-        // 修改暂停失效的问题
+        // 后台切回前台的时候,loadState变为Playable,删除状态判断
         if (!self.isPlaying) {
             self.isBuffering = NO;
             return;
@@ -404,7 +404,8 @@ static NSString *const kPresentationSize         = @"presentationSize";
             // When the buffer is empty
             if (self.playerItem.playbackBufferEmpty) {
                 self.loadState = ZFPlayerLoadStateStalled;
-                [self bufferingSomeSecond];
+                //对于弱网情况处理不合理,暂时屏蔽
+                //[self bufferingSomeSecond];
             }
         } else if ([keyPath isEqualToString:kPlaybackLikelyToKeepUp]) {
             // When the buffer is good
